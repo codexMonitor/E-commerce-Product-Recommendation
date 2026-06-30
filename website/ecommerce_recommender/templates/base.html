@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>E-commerce Recommendation System</title>
+
+</head>
+
+<body>
+
+<nav>
+
+<a href="/">Home</a>
+
+<a href="{% url 'analytics' %}">Analytics</a>
+
+<a href="{% url 'products' %}">Products</a>
+
+<a href="{% url 'recommendation' %}">Recommendation</a>
+
+<a href="{% url 'about' %}">About</a>
+
+</nav>
+
+<hr>
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+
+</html>

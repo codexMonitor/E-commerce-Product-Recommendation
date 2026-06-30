@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Recommendation</h1>
+
+<form method="POST">
+
+{% csrf_token %}
+
+User ID
+
+<input type="text" name="user">
+
+Top K
+
+<input type="number" name="k">
+
+<button>
+
+Recommend
+
+</button>
+
+</form>
+
+{% if recommendations %}
+
+<h2>Results</h2>
+
+<ul>
+
+{% for item in recommendations %}
+
+<li>{{ item }}</li>
+
+{% endfor %}
+
+</ul>
+
+{% endif %}
+
+{% endblock %}
