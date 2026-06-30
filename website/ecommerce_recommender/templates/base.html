@@ -1,35 +1,29 @@
+{% load static %}
+
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-commerce Recommendation System</title>
 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
 
 <nav>
-
-<a href="/">Home</a>
-
-<a href="{% url 'analytics' %}">Analytics</a>
-
-<a href="{% url 'products' %}">Products</a>
-
-<a href="{% url 'recommendation' %}">Recommendation</a>
-
-<a href="{% url 'about' %}">About</a>
-
+    <a href="/">Home</a>
+    <a href="/products/">Products</a>
+    <a href="/recommendation/">Recommendation</a>
+    <a href="/analytics/">Analytics</a>
+    <a href="/about/">About</a>
 </nav>
 
-<hr>
-
-{% block content %}
-
-{% endblock %}
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
 
 </body>
-
 </html>

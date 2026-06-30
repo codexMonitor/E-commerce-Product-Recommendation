@@ -6,21 +6,21 @@
 
 <form method="POST">
 
-{% csrf_token %}
+    {% csrf_token %}
 
-User ID
+    <label>User ID</label><br>
+    <input type="text" name="user">
 
-<input type="text" name="user">
+    <br>
 
-Top K
+    <label>Top K</label><br>
+    <input type="number" name="k" value="5">
 
-<input type="number" name="k">
+    <br>
 
-<button>
-
-Recommend
-
-</button>
+    <button type="submit">
+        Recommend
+    </button>
 
 </form>
 
