@@ -23,7 +23,7 @@ try:
         recommender = pickle.load(f)
 
     products = pd.read_csv(
-        BASE_DIR / "data" / "processed" / "products.csv"
+        BASE_DIR / "data" / "processed" / "products_labeled.csv"
     )
 
     products = products.drop_duplicates(subset="itemid", keep="last")
