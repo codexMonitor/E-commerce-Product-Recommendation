@@ -2,21 +2,30 @@
 
 {% block content %}
 
-<h1>Recommendation</h1>
+<h1>Product Recommendation</h1>
 
 <form method="POST">
 
     {% csrf_token %}
 
     <label>User ID</label><br>
-    <input type="text" name="user">
+    <input
+        type="number"
+        name="user"
+        required
+    >
 
-    <br>
+    <br><br>
 
     <label>Top K</label><br>
-    <input type="number" name="k" value="5">
+    <input
+        type="number"
+        name="k"
+        value="5"
+        min="1"
+    >
 
-    <br>
+    <br><br>
 
     <button type="submit">
         Recommend
@@ -24,19 +33,49 @@
 
 </form>
 
+<br>
+
+{% if error %}
+
+<div style="color:red;">
+    {{ error }}
+</div>
+
+{% endif %}
+
 {% if recommendations %}
 
-<h2>Results</h2>
+<h2>Recommended Products</h2>
 
-<ul>
+<table border="1" cellpadding="8">
 
-{% for item in recommendations %}
+    <tr>
+        <th>Rank</th>
+        <th>Product ID</th>
+        <th>Category</th>
+        <th>Product Name</th>
+        <th>Score</th>
+    </tr>
 
-<li>{{ item }}</li>
+    {% for product in recommendations %}
 
-{% endfor %}
+    <tr>
 
-</ul>
+        <td>{{ forloop.counter }}</td>
+
+        <td>{{ product.itemid }}</td>
+
+        <td>{{ product.categoryid }}</td>
+
+        <td>{{ product.name }}</td>
+
+        <td>{{ product.score|floatformat:3 }}</td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
 
 {% endif %}
 

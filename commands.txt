@@ -1,0 +1,13 @@
+python manage.py runserver
+
+git push 
+
+git branch
+
+git switch
+
+git checkout
+
+git add 
+
+git commit
