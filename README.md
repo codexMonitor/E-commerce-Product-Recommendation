@@ -98,6 +98,9 @@ cd E-commerce-Product-Recommendation
 # install dependencies
 pip install -r requirements.txt
 
+# move to the folder named website before running the project
+cd website/ecommerce_recommender
+
 # run the Django web app
 python manage.py runserver
 ```
