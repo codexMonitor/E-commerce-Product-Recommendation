@@ -86,7 +86,7 @@ captures genuine personalized signal rather than just surfacing best-sellers.
 └── README.md
 ```
 
-*(Adjust the tree above if your actual folder names differ.)*
+*The tree does not look the same as above because of some technical problems*
 
 ## Setup & Usage
 
