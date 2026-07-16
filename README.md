@@ -49,7 +49,7 @@ After cleaning (deduplication, re-indexing IDs):
 | Unique visitors (in interaction matrix) | 1,407,579 |
 | Unique items with category metadata | 417,053 |
 | Unique items with at least one event | 235,061 |
-| Views / Add-to-cart / Transactions | 2,664,312 / 69,332 / 22,457 |
+| Views / Add-to-cart / Transactions | 2,664,215 / 68,966 / 22,456 |
 
 ## Data & Model Files
 
