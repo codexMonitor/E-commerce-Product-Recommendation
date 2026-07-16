@@ -51,6 +51,72 @@ After cleaning (deduplication, re-indexing IDs):
 | Unique items with at least one event | 235,061 |
 | Views / Add-to-cart / Transactions | 2,664,312 / 69,332 / 22,457 |
 
+## Data & Model Files
+
+The raw and processed data files (and the trained `recommender.pkl` model)
+are **not included in this repository**. The raw Retailrocket CSVs are
+several hundred MB in total, and the packaged model file alone exceeds
+670 MB once it bundles the full interaction matrix and label encoders —
+both well past GitHub's 100 MB per-file limit. These are excluded via
+`.gitignore` and hosted externally instead:
+
+**Data & model download:** https://drive.google.com/drive/u/2/folders/1yh3_M87wm_bWxC5ufVez9eR4WdtgI89R
+
+To run the project locally:
+
+1. Download the contents of the Google Drive folder above.
+2. Place the raw CSVs (`events.csv`, `item_properties_part1.csv`,
+   `item_properties_part2.csv`, `category_tree.csv`) into `data/raw/`.
+3. Place the processed files (interaction matrix, encoders, `products.csv`)
+   into `data/processed/`, or regenerate them by running the preprocessing
+   notebooks end-to-end.
+4. Place `recommender.pkl` into `models/`, or regenerate it by running the
+   training notebook (see `notebooks/`), which reproduces the tuning and
+   final model bundling described in the report.
+
+*(Adjust the folder names above if they don't match the actual layout
+inside the Drive folder — update this list once the folder is finalized.)*
+
+## Project Structure
+
+```
+├── notebooks/              # Data prep, EDA, model training & evaluation notebooks
+├── models/                 # recommender_wrapper.py, packaged recommender.pkl (not in repo, see above)
+├── website/                # Django project (recommendation form, product catalog)
+├── data/
+│   ├── raw/                # Original Retailrocket CSVs (not in repo, see above)
+│   └── processed/          # Cleaned interaction matrix, encoders, products.csv (not in repo, see above)
+├── results/                 # Evaluation metrics and charts
+├── requirements.txt
+└── README.md
+```
+
+*The tree does not look the same as above because of some technical problems*
+
+## Setup & Usage
+
+```bash
+# clone the repo
+git clone https://github.com/codexMonitor/E-commerce-Product-Recommendation.git
+cd E-commerce-Product-Recommendation
+
+# install dependencies
+pip install -r requirements.txt
+
+# download data & model files from Google Drive (see "Data & Model Files"
+# above) and place them in data/ and models/ before running the app
+
+# move to the folder named website before running the project
+cd website/ecommerce_recommender
+
+# run the Django web app
+python manage.py runserver
+```
+
+Then open `http://127.0.0.1:8000/recommendation/` to get recommendations for
+a given visitor ID, or `http://127.0.0.1:8000/products/` to browse the
+paginated product catalog.
+
 ## Model
 
 - **Algorithm:** Alternating Least Squares (ALS) for implicit feedback, via the [`implicit`](https://github.com/benfred/implicit) library
@@ -71,43 +137,6 @@ popularity baseline (most popular not-yet-interacted items):
 The tuned ALS model outperforms the popularity baseline by roughly **3.5x**
 on precision, **2.8x** on recall, and **3.6x** on NDCG — confirming it
 captures genuine personalized signal rather than just surfacing best-sellers.
-
-## Project Structure
-
-```
-├── notebooks/              # Data prep, EDA, model training & evaluation notebooks
-├── models/                 # recommender_wrapper.py, packaged recommender.pkl
-├── website/                # Django project (recommendation form, product catalog)
-├── data/
-│   ├── raw/                # Original Retailrocket CSVs
-│   └── processed/          # Cleaned interaction matrix, encoders, products.csv
-├── results/                 # Evaluation metrics and charts
-├── requirements.txt
-└── README.md
-```
-
-*The tree does not look the same as above because of some technical problems*
-
-## Setup & Usage
-
-```bash
-# clone the repo
-git clone https://github.com/codexMonitor/E-commerce-Product-Recommendation.git
-cd E-commerce-Product-Recommendation
-
-# install dependencies
-pip install -r requirements.txt
-
-# move to the folder named website before running the project
-cd website/ecommerce_recommender
-
-# run the Django web app
-python manage.py runserver
-```
-
-Then open `http://127.0.0.1:8000/recommendation/` to get recommendations for
-a given visitor ID, or `http://127.0.0.1:8000/products/` to browse the
-paginated product catalog.
 
 ## Tech Stack
 
